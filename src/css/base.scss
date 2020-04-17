@@ -1,6 +1,79 @@
+*,
+*:after,
+*:before {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
+$primary-background: #231641;
+$dark-green: #0F2826;
+$light-green: #244533; 
 
 body {
+  // background-color: $primary-background;
+  margin: 0
+}
+
+// HEADER
+header {
+  background-color: #0A0A13;
+  display: flex;
+  justify-content: space-between;
+  height: 20vh
+}
+
+header p {
+  align-self: flex-start;
+  color: whitesmoke;
+  margin: 1% 0 0 1%
+}
+
+#overlook {
+  align-self: center;
+  color: white;
+  justify-self: center;
+}
+
+#address {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  margin: 0 1% 1%
+}
+
+// MAIN
+main {
   background-color: $primary-background;
+  display: flex;
+  height: 80vh;
+}
+
+.login {
+  align-self: center;
+  align-items: center;
+  background-color: $dark-green;
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+  justify-content: space-around;
+  justify-self: center;
+  width: 30%;
+}
+
+#username,
+#password {
+  display: flex;
+  justify-content: space-around;
+  width: 55%
+}
+
+#login-btn {
+  width: 50%;
+}
+
+.hide {
+  display: none;
 }
