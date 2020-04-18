@@ -63,7 +63,7 @@ describe('User', () => {
   });
 
   it('should have a list of their bookings', () => {
-    expect(user.myBookings.length).to.deep.equal([]);
+    expect(user.myBookings).to.deep.equal([]);
   });
 
   it('should have a name for login', () => {

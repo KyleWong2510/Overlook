@@ -1,3 +1,5 @@
+import Booking from '../src/Booking';
+
 class User {
   constructor({id, name}) {
     this.id = id;
