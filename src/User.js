@@ -1,5 +1,5 @@
 class User {
-  constructor() {
+  constructor({id, name}) {
     this.id = id;
     this.name = name;
     this.myBookings = [];
@@ -26,3 +26,5 @@ class User {
     }, 0)
   }
 }
+
+export default User

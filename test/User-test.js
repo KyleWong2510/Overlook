@@ -1,7 +1,9 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-import User from '../src/User'
+import User from '../src/User';
+import Booking from '../src/Booking';
+
 
 describe('User', () => {
   let user;
@@ -12,20 +14,20 @@ describe('User', () => {
 
   beforeEach(() => {
     user = new User({"id":1, "name":"Leatha Ullrich"})
-    booking1 = {
+    booking1 = new Booking({
       "id":"5fwrgu4i7k55hl6t8",
       "userID":1,
       "date":"2020/02/05",
       "roomNumber":12,
       "roomServiceCharges":[]
-    };
-    booking2 = {
+    });
+    booking2 = new Booking({
       "id":"5fwrgu4i7k55hl6x8",
       "userID":1,
       "date":"2020/01/11",
       "roomNumber":20,
       "roomServiceCharges":[]
-    };
+    });
     room12 = {
       "number":12,
       "roomType":"single room",
@@ -72,11 +74,11 @@ describe('User', () => {
     expect(user.password).to.equal('overlook2020');
   });
 
-  it('should be able to add to their list of bookings'), () => {
+  it('should be able to add to their list of bookings', () => {
     expect(user.myBookings.length).to.equal(0);
     user.addToMyBookings(booking1);
     expect(user.myBookings.length).to.equal(1)
-  }
+  });
 
   it('should be able to create a booking', () => {
     expect(user.myBookings.length).to.equal(0);
