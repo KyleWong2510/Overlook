@@ -1,9 +1,9 @@
 import Booking from '../src/Booking';
 
 class User {
-  constructor({id, name}) {
-    this.id = id;
-    this.name = name;
+  constructor(user) {
+    this.id = user.id;
+    this.name = user.name;
     this.myBookings = [];
     this.login = `customer${id}`;
     this.password = 'overlook2020'
