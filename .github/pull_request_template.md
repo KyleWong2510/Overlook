@@ -18,9 +18,11 @@
 - [ ] User.js
 - [ ] Manager.js
 - [ ] Hotel.js
+- [ ] Booking.js
 - [ ] index.js
 - [ ] Sleep.js
 - [ ] User-test.js
 - [ ] Manager-test.js
 - [ ] Hotel-test.js
+- [ ] Booking-test.js
 
