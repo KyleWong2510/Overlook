@@ -72,11 +72,11 @@ describe('User', () => {
     expect(user.password).to.equal('overlook2020');
   });
 
-  it('should be able to add to their list of bookings'), () => {
+  it('should be able to add to their list of bookings', () => {
     expect(user.myBookings.length).to.equal(0);
     user.addToMyBookings(booking1);
     expect(user.myBookings.length).to.equal(1)
-  }
+  });
 
   it('should be able to create a booking', () => {
     expect(user.myBookings.length).to.equal(0);
