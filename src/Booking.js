@@ -1,5 +1,5 @@
 class Booking {
-  constructor({id, userID, date, roomNumber, roomServiceCharges}) {
+  constructor(id, userID, date, roomNumber, roomServiceCharges) {
     this.id = id;
     this.userID = userID;
     this.date = date;

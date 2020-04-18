@@ -8,13 +8,13 @@ describe('Booking', function() {
   let booking;
   
   beforeEach(() => {
-    booking = new Booking({
-      "id":"5fwrgu4i7k55hl6t8",
-      "userID":1,
-      "date":"2020/02/05",
-      "roomNumber":12,
-      "roomServiceCharges":[]
-    })
+    booking = new Booking(
+      "5fwrgu4i7k55hl6t8",
+      1,
+      "2020/02/05",
+      12,
+      []
+    )
   });
   
   it('should be a function', () => {

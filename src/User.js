@@ -1,3 +1,5 @@
+import Booking from '../src/Booking';
+
 class User {
   constructor({id, name}) {
     this.id = id;
@@ -12,8 +14,8 @@ class User {
   }
 
 //WHAT TO DO HERE?
-  createBooking() {
-    let newBooking = new Booking()
+  createBooking(id, userID, date, roomNumber, roomServiceCharges) {
+    let newBooking = new Booking(id, userID, date, roomNumber, roomServiceCharges)
     this.addToMyBookings(newBooking)
   }
 

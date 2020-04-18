@@ -14,20 +14,8 @@ describe('User', () => {
 
   beforeEach(() => {
     user = new User({"id":1, "name":"Leatha Ullrich"})
-    booking1 = new Booking({
-      "id":"5fwrgu4i7k55hl6t8",
-      "userID":1,
-      "date":"2020/02/05",
-      "roomNumber":12,
-      "roomServiceCharges":[]
-    });
-    booking2 = new Booking({
-      "id":"5fwrgu4i7k55hl6x8",
-      "userID":1,
-      "date":"2020/01/11",
-      "roomNumber":20,
-      "roomServiceCharges":[]
-    });
+    booking1 = new Booking("5fwrgu4i7k55hl6t8", 1, "2020/02/05", 12, []);
+    booking2 = new Booking("5fwrgu4i7k55hl6x8", 1, "2020/01/11", 20, []);
     room12 = {
       "number":12,
       "roomType":"single room",
@@ -82,7 +70,7 @@ describe('User', () => {
 
   it('should be able to create a booking', () => {
     expect(user.myBookings.length).to.equal(0);
-    user.createBooking();
+    user.createBooking("5fwrgu4i7k55hl6t8", 1, "2020/02/05", 12, []);
     expect(user.myBookings.length).to.equal(1)
     expect(user.myBookings).to.deep.equal([{
       "id":"5fwrgu4i7k55hl6t8",
@@ -95,8 +83,8 @@ describe('User', () => {
 
   it('should be able to calculate the amount spent on bookings', () => {
     expect(user.myBookings).to.deep.equal([]);
-    expect(user.createBooking()).to.equal(booking1);
-    expect(user.createBooking()).to.equal(booking2);
+    expect(user.createBooking("5fwrgu4i7k55hl6t8", 1, "2020/02/05", 12, [])).to.equal(booking1);
+    expect(user.createBooking("5fwrgu4i7k55hl6x8", 1, "2020/01/11", 20, [])).to.equal(booking2);
     expect(user.myBookings.length).to.equal(2)
     expect(calculateAmountSpent()).to.equal(516.04)
   });
