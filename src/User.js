@@ -5,7 +5,7 @@ class User {
     this.id = user.id;
     this.name = user.name;
     this.myBookings = [];
-    this.login = `customer${id}`;
+    this.login = `customer${user.id}`;
     this.password = 'overlook2020'
   }
 
@@ -14,9 +14,10 @@ class User {
   }
 
 //WHAT TO DO HERE?
-  createBooking(id, userID, date, roomNumber, roomServiceCharges) {
-    let newBooking = new Booking(id, userID, date, roomNumber, roomServiceCharges)
+  createBooking(booking) {
+    let newBooking = new Booking(booking)
     this.addToMyBookings(newBooking)
+    return newBooking
   }
 
   calculateAmountSpent() {
