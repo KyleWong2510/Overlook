@@ -1,16 +1,16 @@
 *,
 *:after,
 *:before {
-box-sizing: border-box;
-color: whitesmoke;
-margin: 0;
-padding: 0;
+  box-sizing: border-box;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
 }
 
 /* This is an example of using Sass, otherwise plain CSS works too*/
 $primary-background: #231641;
 $dark-green: #0F2826;
-$light-green: #244533; 
+$light-green: #244533;
 
 body {
   // background-color: $primary-background;
@@ -108,10 +108,13 @@ main {
 #search-bar {
   display: flex;
   flex-direction: column;
+  height: 50%;
+  justify-content: space-around;
 }
 
 #search-user-section input {
-  align-self: center;;
+  align-self: center;
+  ;
   color: #0A0A13;
   width: 30%;
 }
@@ -156,7 +159,7 @@ main {
   width: 100%
 }
 
-#mgr-info-top span{
+#mgr-info-top span {
   font-size: 2em;
 }
 
@@ -192,6 +195,25 @@ main {
   width: 100%
 }
 
+//GUEST PAGE
+.guest-page {
+  display: flex;
+  width: 100%
+}
+
+#guest-nav {
+  background-color: $dark-green;
+  width: 20%
+}
+
+#guest-main {
+  width: 50%
+}
+
+#guest-info {
+  background-color: $dark-green;
+  width: 30%
+}
 
 .hide {
   display: none;
