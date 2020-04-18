@@ -81,8 +81,61 @@ main {
   width: 100%
 }
 
-#manager-search {
- width: 70%
+#manager-main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  width: 70%
+}
+
+#search-user-section {
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 25%;
+  justify-content: space-around;
+  padding: 3%;
+  width: 100%
+}
+
+#search-user {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}
+
+#search-bar {
+  display: flex;
+  flex-direction: column;
+}
+
+#search-user-section input {
+  align-self: center;;
+  color: #0A0A13;
+  width: 30%;
+}
+
+#search-user-btn {
+  align-self: center;
+  background-color: $light-green;
+  height: 30%;
+  width: 20%;
+}
+
+#manager-main-title {
+  font-size: 1.5em;
+  text-align: center;
+  width: 100%;
+}
+
+#manager-main-bottom {
+  border-top: $light-green solid 2px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1%;
+  text-align: center;
+  width: 100%
 }
 
 #manager-info {
@@ -91,7 +144,6 @@ main {
   display: flex;
   flex-direction: column;
   padding: 1%;
-  // justify-content: space-evenly;
   width: 30%
 }
 
