@@ -1,6 +1,284 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
+}
+
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
+$primary-background: #231641;
+$dark-green: #0F2826;
+$light-green: #244533;
 
 body {
+  // background-color: $primary-background;
+  margin: 0
+}
+
+// HEADER
+header {
+  background-color: #0A0A13;
+  display: flex;
+  justify-content: space-between;
+  height: 20vh
+}
+
+header p {
+  align-self: flex-start;
+  color: whitesmoke;
+  margin: 1% 0 0 1%
+}
+
+#overlook {
+  align-self: center;
+  color: white;
+  justify-self: center;
+}
+
+#address {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  margin: 0 1% 1%
+}
+
+// MAIN
+main {
   background-color: $primary-background;
+  display: flex;
+  height: 80vh;
+}
+
+.login {
+  align-self: center;
+  align-items: center;
+  background-color: $dark-green;
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+  justify-content: space-around;
+  justify-self: center;
+  width: 30%;
+}
+
+#username,
+#password {
+  display: flex;
+  justify-content: space-around;
+  width: 55%
+}
+
+#login-btn {
+  width: 50%;
+}
+
+//MANAGER PAGE
+.manager-page {
+  display: flex;
+  width: 100%
+}
+
+#manager-main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  width: 70%
+}
+
+#search-user-section {
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 25%;
+  justify-content: space-around;
+  padding: 3%;
+  width: 100%
+}
+
+#search-user {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}
+
+#search-bar {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  justify-content: space-around;
+}
+
+#search-user-section input {
+  align-self: center;
+  ;
+  color: #0A0A13;
+  width: 30%;
+}
+
+#search-user-btn {
+  align-self: center;
+  background-color: $light-green;
+  height: 30%;
+  width: 20%;
+}
+
+#manager-main-title {
+  font-size: 1.5em;
+  text-align: center;
+  width: 100%;
+}
+
+#manager-main-bottom {
+  border-top: $light-green solid 2px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1%;
+  text-align: center;
+  width: 100%
+}
+
+#manager-info {
+  align-items: center;
+  background-color: $dark-green;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  width: 30%
+}
+
+#mgr-info-top {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 25%;
+  text-align: center;
+  width: 100%
+}
+
+#mgr-info-top span {
+  font-size: 2em;
+}
+
+.welcome {
+  font-size: 1.5em;
+  margin-bottom: 3%;
+}
+
+#stats {
+  border-top: $light-green solid 2px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5% 0;
+  width: 100%
+}
+
+#total-revenue,
+#num-rooms-available,
+#percent-booked {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 30%
+}
+
+#mgr-current-bookings {
+  border-top: $light-green solid 2px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5em;
+  height: 75%;
+  padding-top: 3%;
+  text-align: center;
+  width: 100%
+}
+
+//GUEST PAGE
+.guest-page {
+  display: flex;
+  width: 100%
+}
+
+#guest-nav {
+  background-color: $dark-green;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  width: 20%
+}
+
+#guest-nav-top {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 25%;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+#guest-nav-top button{
+  color: #0A0A13;
+  height: 25%;
+  width: 70%
+}
+
+#guest-nav-bottom {
+  border-top: $light-green solid 2px;
+  height: 75%;
+}
+
+#guest-main {
+  padding: 5%;
+  width: 50%
+}
+
+#guest-main-display {
+  background-color: $dark-green;
+  height: 100%;
+  width: 100%
+}
+
+#guest-info {
+  align-items: center;
+  background-color: $dark-green;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  width: 30%
+}
+
+#guest-info-top {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 25%;
+  width: 100%;
+}
+
+#amount-spent {
+  border-top: #244533 solid 2px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 100%;
+}
+
+#guest-info-bottom {
+  border-top: #244533 solid 2px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5em;
+  height: 75%;
+  padding-top: 3%;
+  text-align: center;
+  width: 100%;
+}
+
+.hide {
+  display: none;
 }

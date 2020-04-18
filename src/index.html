@@ -1,13 +1,129 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <title>Webpack Starter Kit</title>
-  </head>
-  <body>
-    <h1>Webpack Starter Kit</h1>
 
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+<head>
+  <title>Overlook Hotel</title>
+</head>
 
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
-  </body>
+<body>
+  <header>
+    <p>Welcome to the famous</p>
+    <h1 id='overlook'>Overlook Hotel</h1>
+    <div id='address'>
+      <p>27500 E Timberline Road</p>
+      <p>Sidewinder, CO 80666</p>
+    </div>
+  </header>
+  <main>
+    <div class='login hide'>
+      <div id='username'>
+        <p>
+          Username:
+        </p>
+        <input type='text' name='username' placeholder='Username Here'>
+      </div>
+      <div id='password'>
+        <p>
+          Password:
+        </p>
+        <input type='password' name='password' placeholder='Password Here'>
+      </div>
+      <button id='login-btn' type='button'>
+        Login
+      </button>
+    </div>
+    <div class='manager-page hide'>
+      <section id='manager-main'>
+        <div id='search-user-section'>
+          <div id='search-bar'>
+            <p id='search-user'>
+              Search Users:
+            </p>
+            <input type='search' name='search' placeholder='Enter User Name'>
+          </div>
+          <button id='search-user-btn'>
+            Search
+          </button>
+        </div>
+        <div id='manager-main-bottom'>
+          <p id='manager-main-title'>
+            Available Rooms
+          </p>
+        </div>
+      </section>
+      <section id='manager-info'>
+        <div id='mgr-info-top'>
+          <p class='welcome'>Welcome, Manager</p>
+          <div id='stats'>
+            <div id='total-revenue'>
+              <p>
+                Today's<br>Revenue:
+              </p>
+              <span id='revenue'>
+                $5000
+              </span>
+            </div>
+            <div id='num-rooms-available'>
+              <p>
+                Rooms<br>Available:
+              </p>
+              <span id='num-rooms'>
+                25
+              </span>
+            </div>
+            <div id='percent-booked'>
+              <p>
+                % Rooms<br>Booked:
+              </p>
+              <span id='percentage'>
+                73%
+              </span>
+            </div>
+          </div>
+        </div>
+        <div id='mgr-current-bookings'>
+          <p>
+            Current Bookings
+          </p>
+        </div>
+      </section>
+    </div>
+    <div class='guest-page'>
+      <nav id='guest-nav'>
+        <div id='guest-nav-top'>
+          <button>
+            Book A Room
+          </button>
+          <button>
+            Browse Rooms
+          </button>
+        </div>
+        <div id='guest-nav-bottom'>
+
+        </div>
+      </nav>
+      <div id='guest-main'>
+       <div id='guest-main-display'>
+         
+       </div>
+      </div>
+      <div id='guest-info'>
+        <div id='guest-info-top'>
+          <p class='welcome'>Welcome, Customer</p>
+          <div id='amount-spent'>
+            <p>Total Amount Spent:</p>
+            <p>$539048.34</p>
+          </div>
+        </div>
+        <div id='guest-info-bottom'>
+          <p>My Bookings</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+</body>
+
 </html>
