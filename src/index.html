@@ -81,7 +81,6 @@
             </div>
           </div>
         </div>
-
         <div id='mgr-current-bookings'>
           <p>
             Current Bookings
@@ -91,34 +90,38 @@
     </div>
     <div class='guest-page'>
       <nav id='guest-nav'>
-        <button>
-          Book A Room
-        </button>
-        <button>
-          Browse Rooms
-        </button>
+        <div id='guest-nav-top'>
+          <button>
+            Book A Room
+          </button>
+          <button>
+            Browse Rooms
+          </button>
+        </div>
+        <div id='guest-nav-bottom'>
+
+        </div>
       </nav>
       <div id='guest-main'>
-       
+       <div id='guest-main-display'>
+         
+       </div>
       </div>
       <div id='guest-info'>
-        <p>
-          Welcome, Customer
-        </p>
-        <p>
-          Total Amount Spent:
-        </p>
-        <p>
-          $539048.34
-        </p>
-        <p>
-          My Bookings
-        </p>
+        <div id='guest-info-top'>
+          <p class='welcome'>Welcome, Customer</p>
+          <div id='amount-spent'>
+            <p>Total Amount Spent:</p>
+            <p>$539048.34</p>
+          </div>
+        </div>
+        <div id='guest-info-bottom'>
+          <p>My Bookings</p>
+        </div>
       </div>
     </div>
   </main>
 
-  <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
 
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
 </body>
