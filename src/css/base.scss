@@ -2,6 +2,7 @@
 *:after,
 *:before {
 box-sizing: border-box;
+color: whitesmoke;
 margin: 0;
 padding: 0;
 }
@@ -73,6 +74,72 @@ main {
 #login-btn {
   width: 50%;
 }
+
+//MANAGER PAGE
+.manager-page {
+  display: flex;
+  width: 100%
+}
+
+#manager-search {
+ width: 70%
+}
+
+#manager-info {
+  align-items: center;
+  background-color: $dark-green;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  // justify-content: space-evenly;
+  width: 30%
+}
+
+#mgr-info-top {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 25%;
+  text-align: center;
+  width: 100%
+}
+
+#mgr-info-top span{
+  font-size: 2em;
+}
+
+.welcome {
+  font-size: 1.5em;
+  margin-bottom: 3%;
+}
+
+#stats {
+  border-top: $light-green solid 2px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5% 0;
+  width: 100%
+}
+
+#total-revenue,
+#num-rooms-available,
+#percent-booked {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 30%
+}
+
+#mgr-current-bookings {
+  border-top: $light-green solid 2px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5em;
+  padding-top: 3%;
+  text-align: center;
+  width: 100%
+}
+
 
 .hide {
   display: none;
