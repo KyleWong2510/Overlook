@@ -20,11 +20,13 @@ class User {
     return newBooking
   }
 
-  calculateAmountSpent() {
-    this.myBookings.reduce((total, booking) => {
-      if (booking.roomNumber === room.number) {
-        total += room.costPerNight
-      }
+  calculateAmountSpent(roomsData) {
+    return this.myBookings.reduce((total, booking) => {
+      roomsData.forEach(room => {
+        if (booking.roomNumber === room.number) {
+          total += room.costPerNight
+        }
+      })
       return total
     }, 0)
   }
