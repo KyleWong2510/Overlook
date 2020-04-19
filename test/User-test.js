@@ -11,9 +11,11 @@ describe('User', () => {
   let booking2;
   let room12;
   let room20;
+  let room34;
+  let rooms;
 
   beforeEach(() => {
-    user = new User({"id":1, "name":"Leatha Ullrich"})
+    user = new User({"id":1,"name":"Leatha Ullrich"});
     booking1 = new Booking({
       "id":"5fwrgu4i7k55hl6t8",
       "userID":1,
@@ -43,7 +45,16 @@ describe('User', () => {
       "bedSize":"queen",
       "numBeds":1,
       "costPerNight":343.95
+    };
+    room34 = {
+      "number":34,
+      "roomType":"residential suite",
+      "bidet":true,
+      "bedSize":"twin",
+      "numBeds":2,
+      "costPerNight":322.34
     }
+    rooms = [room12, room20, room34]
   });
 
   it('should be a function', () => {
@@ -98,6 +109,6 @@ describe('User', () => {
     user.createBooking(booking1);
     user.createBooking(booking2)
     expect(user.myBookings.length).to.equal(2)
-    expect(user.calculateAmountSpent()).to.equal(516.04)
+    expect(user.calculateAmountSpent(rooms)).to.equal(516.04)
   });
 });
