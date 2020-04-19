@@ -1,21 +1,22 @@
 class Hotel {
-  constructor() {
-    this.allRooms = [];
+  constructor(usersData, roomsData, bookingsData) {
+    this.allUsers = usersData;
+    this.allRooms = roomsData;
     this.roomsBooked = [];
     this.roomsAvailable = [];
-    this.allBookings = [];
+    this.allBookings = bookingsData;
     this.pastBookings = [];
     this.todaysBookings = [];
     this.upcomingBookings = [];
   }
 
-  pushAllRooms(rooms) {
-    rooms.forEach(room => this.allRooms.push(room))
-  };
+  // pushAllRooms(rooms) {
+  //   rooms.forEach(room => this.allRooms.push(room))
+  // };
 
-  pushAllBookings(bookings) {
-    bookings.forEach(booking => this.allBookings.push(booking))
-  };
+  // pushAllBookings(bookings) {
+  //   bookings.forEach(booking => this.allBookings.push(booking))
+  // };
   
   filterRoomsBooked(date) {
     this.allBookings.forEach(booking => {
@@ -27,8 +28,9 @@ class Hotel {
     })
   }
 
-  filterRoomsAvailable(date) {
-    this.roomsAvailable = this.allBookings.filter(booking => booking.date !== date)
+  filterRoomsAvailable() {
+    // let inactiveBookings = this.allBookings.filter(booking => booking.date !== date)
+    this.roomsAvailable = this.allRooms.filter(room => !this.roomsBooked.includes(room))
   }
 
   filterUpcomingBookings(date) {
@@ -50,6 +52,7 @@ class Hotel {
           revenue += room.costPerNight
         }
       })
+      // let total = revenue.tofixed(2)
       return revenue
     }, 0)
   }

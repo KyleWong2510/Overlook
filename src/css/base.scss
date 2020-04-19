@@ -49,6 +49,7 @@ main {
   background-color: $primary-background;
   display: flex;
   height: 80vh;
+  justify-content: space-around;
 }
 
 .login {
@@ -62,6 +63,10 @@ main {
   justify-content: space-around;
   justify-self: center;
   width: 30%;
+}
+
+.login input {
+  color: #0A0A13;
 }
 
 #username,
