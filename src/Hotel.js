@@ -29,13 +29,6 @@ class Hotel {
 
   filterRoomsAvailable(date) {
     this.roomsAvailable = this.allBookings.filter(booking => booking.date !== date)
-    // this.allBookings.forEach(booking => {
-    //   this.allRooms.forEach(room => {
-    //     if (booking.date !== date) {
-    //       this.roomsAvailable.push(room)
-    //     }
-    //   })
-    // })
   }
 
   filterUpcomingBookings(date) {
