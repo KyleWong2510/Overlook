@@ -201,6 +201,12 @@ main {
   width: 100%
 }
 
+.curr-booking-card {
+  background-color: $light-green;
+  font-size: 1em;
+  margin: 1em 0
+}
+
 //GUEST PAGE
 .guest-page {
   display: flex;

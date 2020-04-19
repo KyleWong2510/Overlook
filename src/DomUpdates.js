@@ -16,10 +16,22 @@ let domUpdates = {
   },
 
   displayManagerInfo(hotel) {
-    $('#revenue').text(hotel.calculateTotalRevenue());
+    $('#revenue').text(`$${hotel.calculateTotalRevenue()}`);
     $('#num-rooms').text(hotel.roomsAvailable.length);
     $('#percentage').text(hotel.calculatePercentOccupied())
   },
+
+  displayCurrentBookings(hotel) {
+    hotel.todaysBookings.forEach(booking => {
+      $(`<div class='curr-booking-card'>
+        <p>${booking.id}<p> 
+        <p>UserID: ${booking.userID}</p>
+        <p>Room: ${booking.roomNumber}</p>
+      <div>`)
+        .appendTo('#current-bookings-title')
+    })
+    
+  }
 
 }
 

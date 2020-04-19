@@ -52,8 +52,7 @@ class Hotel {
           revenue += room.costPerNight
         }
       })
-      // let total = revenue.tofixed(2)
-      return revenue
+      return Number(revenue.toFixed(2))
     }, 0)
   }
 

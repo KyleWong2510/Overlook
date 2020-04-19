@@ -28,7 +28,7 @@ const createHotel = (usersData, roomsData, bookingsData) => {
 
 const managerHandler = (hotel) => {
   domUpdates.displayManagerInfo(hotel)
-  
+  domUpdates.displayCurrentBookings(hotel)
 }
 
 const fetchData = () => {
