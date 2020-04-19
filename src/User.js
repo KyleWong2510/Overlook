@@ -13,7 +13,7 @@ class User {
     this.myBookings.push(booking)
   }
 
-//WHAT TO DO HERE?
+//WHAT TO DO HERE? POST NEEDED
   createBooking(booking) {
     let newBooking = new Booking(booking)
     this.addToMyBookings(newBooking)

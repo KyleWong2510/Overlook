@@ -28,12 +28,42 @@ class Hotel {
   }
 
   filterRoomsAvailable(date) {
-    this.allBookings.filter(booking => {
-      booking.date !== date
-    })
-    this.allRooms.forEach(room => {
-      
-    })
+    this.roomsAvailable = this.allBookings.filter(booking => booking.date !== date)
+    // this.allBookings.forEach(booking => {
+    //   this.allRooms.forEach(room => {
+    //     if (booking.date !== date) {
+    //       this.roomsAvailable.push(room)
+    //     }
+    //   })
+    // })
+  }
+
+  filterUpcomingBookings(date) {
+    this.upcomingBookings = this.allBookings.filter(booking => booking.date > date)
+  }
+
+  filterCurrentBookings(date) {
+    this.todaysBookings = this.allBookings.filter(booking => booking.date === date)
+  }
+
+  filterPastBookings(date) {
+    this.pastBookings = this.allBookings.filter(booking => booking.date < date)
+  }
+
+  calculateTotalRevenue() {
+    return this.todaysBookings.reduce((revenue, booking) => {
+      this.roomsBooked.forEach(room => {
+        if(booking.roomNumber === room.number) {
+          revenue += room.costPerNight
+        }
+      })
+      return revenue
+    }, 0)
+  }
+
+  calculatePercentOccupied() {
+    let percent = this.roomsBooked.length / this.allRooms.length
+    return `${percent * 100}%`
   }
 }
 
