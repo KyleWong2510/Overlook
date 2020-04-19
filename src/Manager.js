@@ -1,6 +1,3 @@
-import User from "./User";
-import Booking from "./Booking";
-
 class Manager {
   constructor() {
     this.login = 'manager';
@@ -19,6 +16,7 @@ class Manager {
   //   return newUser
   // }
   
+  //NO BOOKING ID OR OTHER INFO?
   createBookingForGuest(userId, todayDate, roomNum) {
     let booking = {
       'userID': Number(userId),
@@ -46,9 +44,9 @@ class Manager {
     })
       .catch(error => console.error(error));
   }
-  }
-
-
 }
+
+
+
 
 export default Manager

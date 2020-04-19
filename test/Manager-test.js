@@ -46,6 +46,7 @@ describe('Manager', function() {
     expect(manager.password).to.equal('overlook2020');
   });
 
+  //DOM?
   // it('should be able to search a user by name', () => {
   //   expect(manager.searchUserName(allUsers,'Leatha Ullrich')).to.equal({
   //     id: 1,
