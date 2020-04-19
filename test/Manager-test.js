@@ -56,13 +56,13 @@ describe('Manager', function() {
   //   });
   // });
   
-  it('should be able to make a booking for a user', () => {
-    expect(manager.createBookingForGuest("5fwrgu4i7k55hl6t8", 1, date, 12)).to.equal(booking);
-  });
+  // it('should be able to make a booking for a user', () => {
+  //   expect(manager.createBookingForGuest(1, date, 12)).to.equal(booking);
+  // });
 
-  it('should be able to cancel a booking', () => {
-    manager.cancelBooking()
-  });
+  // it('should be able to cancel a booking', () => {
+  //   manager.cancelBooking()
+  // });
 
 
 

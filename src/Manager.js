@@ -19,20 +19,33 @@ class Manager {
   //   return newUser
   // }
   
-  createBookingForGuest(bookingID, userId, todayDate, roomNum) {
-    // let foundUser = allUsers.find(user => user.name === userName)
-    // console.log(foundUser)
-    let newBooking = new Booking({
-      'id': bookingID,
-      'userID': userId,
+  createBookingForGuest(userId, todayDate, roomNum) {
+    let booking = {
+      'userID': Number(userId),
       'date': todayDate,
-      'roomNumber': roomNum,
-    })
-    return newBooking
+      'roomNumber': Number(roomNum),
+    }
+    let url = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings';
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(booking),
+      })
+      .then(response => console.log(response.json()))
+      .catch(error => console.error(error));
   }
   
-  cancelBooking() {
-
+  cancelBooking(bookingID) {
+    let url = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings';
+    return fetch(url, {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({id: Number(bookingID)})
+    })
+      .catch(error => console.error(error));
+  }
   }
 
 
