@@ -30,9 +30,22 @@ let domUpdates = {
       <div>`)
         .appendTo('#current-bookings-title')
     })
-    
-  }
+  },
 
+  displayAvailableRooms(hotel) {
+    hotel.roomsAvailable.forEach(room => {
+      $(`<div class='curr-booking-card'>
+        <span>Room: ${room.number}<span>
+        <span>Type: ${room.roomType}</span>
+        <span>Bidet: ${room.bidet}</span>
+        <br>
+        <span>Bed Count: ${room.numBeds}</span>
+        <span>Bed Size: ${room.bedSize}</span>
+        <span>Cost per Night: ${room.costPerNight}</span>
+      </div>`)
+        .appendTo('#manager-main-title')
+    })
+  }
 }
 
 export default domUpdates
