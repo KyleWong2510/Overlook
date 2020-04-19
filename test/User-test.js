@@ -82,7 +82,7 @@ describe('User', () => {
 
   it('should be able to create a booking', () => {
     expect(user.myBookings.length).to.equal(0);
-    user.createBooking();
+    user.createBooking(booking1);
     expect(user.myBookings.length).to.equal(1)
     expect(user.myBookings).to.deep.equal([{
       "id":"5fwrgu4i7k55hl6t8",
@@ -95,9 +95,9 @@ describe('User', () => {
 
   it('should be able to calculate the amount spent on bookings', () => {
     expect(user.myBookings).to.deep.equal([]);
-    expect(user.createBooking()).to.equal(booking1);
-    expect(user.createBooking()).to.equal(booking2);
+    user.createBooking(booking1);
+    user.createBooking(booking2)
     expect(user.myBookings.length).to.equal(2)
-    expect(calculateAmountSpent()).to.equal(516.04)
+    expect(user.calculateAmountSpent()).to.equal(516.04)
   });
 });

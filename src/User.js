@@ -1,11 +1,11 @@
 import Booking from '../src/Booking';
 
 class User {
-  constructor({id, name}) {
-    this.id = id;
-    this.name = name;
+  constructor(user) {
+    this.id = user.id;
+    this.name = user.name;
     this.myBookings = [];
-    this.login = `customer${id}`;
+    this.login = `customer${user.id}`;
     this.password = 'overlook2020'
   }
 
@@ -13,10 +13,11 @@ class User {
     this.myBookings.push(booking)
   }
 
-//WHAT TO DO HERE?
-  createBooking() {
-    let newBooking = new Booking()
+//WHAT TO DO HERE? POST NEEDED
+  createBooking(booking) {
+    let newBooking = new Booking(booking)
     this.addToMyBookings(newBooking)
+    return newBooking
   }
 
   calculateAmountSpent() {

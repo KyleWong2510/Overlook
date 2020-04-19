@@ -14,7 +14,7 @@ describe('Booking', function() {
       "date":"2020/02/05",
       "roomNumber":12,
       "roomServiceCharges":[]
-    })
+    });
   });
   
   it('should be a function', () => {
