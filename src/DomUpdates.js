@@ -70,7 +70,6 @@ let domUpdates = {
 
   displayMyBookings(user) {
     user.myBookings
-      // .sort((a, b) => a.date - b.date)
       .forEach(booking => {
         $(`<div class='curr-booking-card'>
           <p>${booking.id}<p> 
@@ -80,6 +79,7 @@ let domUpdates = {
         .appendTo('#my-bookings-title')
       })
   }
+
 }
 
 export default domUpdates

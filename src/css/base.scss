@@ -253,7 +253,8 @@ main {
   width: 50%
 }
 
-#guest-main-display {
+#guest-main-display,
+.booking-form {
   background-color: $dark-green;
   height: 100%;
   overflow: scroll;

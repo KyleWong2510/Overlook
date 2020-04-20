@@ -82,10 +82,15 @@ const guestAvailableRooms = () => {
   domUpdates.displayAvailableRooms(hotel, '#guest-main-display')
 }
 
+const displayBookingForm = () => {
+  $('#guest-main-display').addClass('hide')
+  $('.booking-form').removeClass('hide')
+}
 
 $('#login-btn').click(loadUser);
 
 $('#browse-rooms-btn').click(guestAvailableRooms)
 
+$('#book-room-btn').click(displayBookingForm)
 
 fetchData()
