@@ -49,6 +49,7 @@ main {
   background-color: $primary-background;
   display: flex;
   height: 80vh;
+  justify-content: space-around;
 }
 
 .login {
@@ -62,6 +63,10 @@ main {
   justify-content: space-around;
   justify-self: center;
   width: 30%;
+}
+
+.login input {
+  color: #0A0A13;
 }
 
 #username,
@@ -136,6 +141,7 @@ main {
   border-top: $light-green solid 2px;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
   padding-top: 1%;
   text-align: center;
   width: 100%
@@ -191,9 +197,21 @@ main {
   flex-direction: column;
   font-size: 1.5em;
   height: 75%;
+  overflow: scroll;
   padding-top: 3%;
   text-align: center;
   width: 100%
+}
+
+.curr-booking-card {
+  background-color: $light-green;
+  font-size: 1em;
+  margin: 1em 0;
+}
+
+.card-half {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 //GUEST PAGE

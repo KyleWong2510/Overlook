@@ -1,13 +1,68 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you import jQuery into a JS file if you use jQuery in that file
 import $ from 'jquery';
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
+import domUpdates from './DomUpdates';
+import Hotel from './Hotel';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+let usersData;
+let roomsData;
+let bookingsData;
 
-console.log('This is the JavaScript entry file - your code begins here.');
+let hotel;
+
+let today = '2020/04/19'
+
+const hotelHandler = (date) => {
+  hotel.filterRoomsBooked(date)
+  hotel.filterRoomsAvailable()
+  hotel.filterUpcomingBookings(date)
+  hotel.filterCurrentBookings(date)
+  hotel.filterPastBookings(date)
+  hotel.calculateTotalRevenue()
+  hotel.calculatePercentOccupied()
+}
+
+const createHotel = (usersData, roomsData, bookingsData) => {
+  hotel = new Hotel(usersData, roomsData, bookingsData);
+  console.log(hotel)
+}
+
+const managerHandler = (hotel) => {
+  domUpdates.displayManagerInfo(hotel)
+  domUpdates.displayCurrentBookings(hotel)
+  domUpdates.displayAvailableRooms(hotel)
+}
+
+const fetchData = () => {
+  usersData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
+    .then(response => response.json())
+    .catch(error => console.error(error));
+
+  roomsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
+    .then(response => response.json())
+    .catch(error => console.error(error))
+
+  bookingsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
+    .then(response => response.json())
+    .catch(error => console.error(error))
+  
+  return Promise.all([usersData, roomsData, bookingsData])
+    .then(response => {
+      usersData = response[0].users;
+      roomsData = response[1].rooms;
+      bookingsData = response[2].bookings;
+      createHotel(usersData, roomsData, bookingsData)
+    })
+    .then(() => {
+      hotelHandler(today)
+      managerHandler(hotel)
+    })
+    .catch(error => console.error(error));
+}
+
+
+$('#login-btn').click(domUpdates.showPage);
+
+
+
+
+fetchData()

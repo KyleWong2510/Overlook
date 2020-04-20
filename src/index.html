@@ -20,26 +20,26 @@
         <p>
           Username:
         </p>
-        <input type='text' name='username' placeholder='Username Here'>
+        <input id='username-input' type='text' name='username' placeholder='Username Here'>
       </div>
       <div id='password'>
         <p>
           Password:
         </p>
-        <input type='password' name='password' placeholder='Password Here'>
+        <input id='password-input' type='password' name='password' placeholder='Password Here'>
       </div>
       <button id='login-btn' type='button'>
         Login
       </button>
     </div>
-    <div class='manager-page hide'>
+    <div class='manager-page'>
       <section id='manager-main'>
         <div id='search-user-section'>
           <div id='search-bar'>
             <p id='search-user'>
               Search Users:
             </p>
-            <input type='search' name='search' placeholder='Enter User Name'>
+            <input id='search-user-input' type='search' name='search' placeholder='Enter User Name'>
           </div>
           <button id='search-user-btn'>
             Search
@@ -49,6 +49,9 @@
           <p id='manager-main-title'>
             Available Rooms
           </p>
+          <div class='found-user hide'>
+
+          </div>
         </div>
       </section>
       <section id='manager-info'>
@@ -60,7 +63,6 @@
                 Today's<br>Revenue:
               </p>
               <span id='revenue'>
-                $5000
               </span>
             </div>
             <div id='num-rooms-available'>
@@ -68,7 +70,6 @@
                 Rooms<br>Available:
               </p>
               <span id='num-rooms'>
-                25
               </span>
             </div>
             <div id='percent-booked'>
@@ -76,19 +77,18 @@
                 % Rooms<br>Booked:
               </p>
               <span id='percentage'>
-                73%
               </span>
             </div>
           </div>
         </div>
         <div id='mgr-current-bookings'>
-          <p>
+          <p id='current-bookings-title'>
             Current Bookings
           </p>
         </div>
       </section>
     </div>
-    <div class='guest-page'>
+    <div class='guest-page hide'>
       <nav id='guest-nav'>
         <div id='guest-nav-top'>
           <button>
