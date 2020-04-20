@@ -9,14 +9,6 @@ class Hotel {
     this.todaysBookings = [];
     this.upcomingBookings = [];
   }
-
-  // pushAllRooms(rooms) {
-  //   rooms.forEach(room => this.allRooms.push(room))
-  // };
-
-  // pushAllBookings(bookings) {
-  //   bookings.forEach(booking => this.allBookings.push(booking))
-  // };
   
   filterRoomsBooked(date) {
     this.allBookings.forEach(booking => {

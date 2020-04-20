@@ -105,10 +105,42 @@ const displayRoomsOnDate = () => {
   domUpdates.displayAvailableRooms(available, '#card-holder')
 }
 
+const filterByRoomType = (arr, type) => {
+  return arr.filter(room => room.roomType === type)
+}
+
+const getFilteredRooms = (hotel) => {
+  let rooms = filterRoomsOnDate(hotel)
+  console.log(rooms)
+  if($('option:selected').val() === 'residential suite') {
+    return filterByRoomType(rooms, 'residential suite')
+  }
+  if($('option:selected').val() === 'suite') {
+    return filterByRoomType(rooms, 'suite')
+  }
+  if($('option:selected').val() === 'junior suite') {
+    return filterByRoomType(rooms, 'junior suite')
+  }
+  if($('option:selected').val() === 'single') {
+    return filterByRoomType(rooms, 'single')
+  }
+}
+
+const displayFilteredRooms = () => {
+  debugger
+  $('#card-holder').html('')
+  let rooms = getFilteredRooms(hotel)  
+  domUpdates.displayAvailableRooms(rooms, '#card-holder')
+}
+
 $('#login-btn').click(loadUser);
 $('#browse-rooms-btn').click(guestAvailableRooms)
 $('#book-room-btn').click(displayBookingForm)
 $('#select-date-btn').click(displayRoomsOnDate)
+
+//WORK ON THIS FILTER BY ROOM TYPE!!!
+
+$('#room-option').click(displayFilteredRooms)
 
 fetchData()
 

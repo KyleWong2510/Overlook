@@ -34,6 +34,16 @@ let domUpdates = {
 
   displayAvailableRooms(arr, element) {
     $('<p>Available Rooms</p>').appendTo(element)
+    $(`<div class='filter-roomtype'>
+    <span>Filter By Room Type: </span>
+    <select id='roomtype' name='roomtype'>
+      <option selected='selected' value='choose'>Select an Option</option>
+      <option id='room-option' value='residential-suite'>Residential Suite</option>
+      <option id='room-option' value='suite'>Suite</option>
+      <option id='room-option' value='junior-suite'>Junior Suite</option>
+      <option id='room-option' value='single'>Single</option>
+    </select>
+    </div>`).appendTo(element)
     arr.forEach(room => {
       $(`<div class='curr-booking-card'>
         <div class='card-half'>
@@ -44,8 +54,9 @@ let domUpdates = {
         <div class='card-half'>
           <span>Bed Count: ${room.numBeds}</span>
           <span>Bed Size: ${room.bedSize}</span>
-          <span>Cost per Night: ${room.costPerNight}</span>
+          <span>Cost per Night: $${room.costPerNight}</span>
         </div>
+        <button id='book-this-room'>Book Now</button>
       </div>`)
         .appendTo(element)
     })
@@ -78,7 +89,8 @@ let domUpdates = {
       <div>`)
       .appendTo('#my-bookings-title')
     })
-  }
+  },
+
 
 
 }
