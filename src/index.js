@@ -33,7 +33,7 @@ const createHotel = (usersData, roomsData, bookingsData) => {
 const managerHandler = (hotel) => {
   domUpdates.displayManagerInfo(hotel)
   domUpdates.displayCurrentBookings(hotel)
-  domUpdates.displayAvailableRooms(hotel, '#manager-main-title')
+  domUpdates.displayAvailableRooms(hotel.roomsAvailable, '#manager-main-title')
 }
 
 const userHandler = (user, hotel) => {
@@ -79,18 +79,38 @@ const loadUser = () => {
   domUpdates.showPage()
 }
 const guestAvailableRooms = () => {
-  domUpdates.displayAvailableRooms(hotel, '#guest-main-display')
+  $('.booking-form-section').addClass('hide')
+  $('.guest-main-display').removeClass('hide')
+  domUpdates.displayAvailableRooms(hotel.roomsAvailable, '.guest-main-display')
+
 }
 
 const displayBookingForm = () => {
-  $('#guest-main-display').addClass('hide')
-  $('.booking-form').removeClass('hide')
+  $('.guest-main-display').addClass('hide')
+  $('.booking-form-section').removeClass('hide')
+}
+
+const filterRoomsOnDate = (hotel) => {
+  let formattedDate = $('#select-date-input').val().split('-').join('/')
+  let roomsBookedOnDate = hotel.allBookings
+    .filter(booking => booking.date === formattedDate)
+    .map(booking => booking.roomNumber)
+  return hotel.allRooms.filter(room => !roomsBookedOnDate.includes(room.number))
+}
+
+const displayRoomsOnDate = () => {
+  $('#card-holder').html('');
+  let available = filterRoomsOnDate(hotel)
+  console.log(available)
+  domUpdates.displayAvailableRooms(available, '#card-holder')
 }
 
 $('#login-btn').click(loadUser);
-
 $('#browse-rooms-btn').click(guestAvailableRooms)
-
 $('#book-room-btn').click(displayBookingForm)
+$('#select-date-btn').click(displayRoomsOnDate)
 
 fetchData()
+
+
+
