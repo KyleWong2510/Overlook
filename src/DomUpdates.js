@@ -35,17 +35,33 @@ let domUpdates = {
   displayAvailableRooms(hotel) {
     hotel.roomsAvailable.forEach(room => {
       $(`<div class='curr-booking-card'>
-        <span>Room: ${room.number}<span>
-        <span>Type: ${room.roomType}</span>
-        <span>Bidet: ${room.bidet}</span>
-        <br>
-        <span>Bed Count: ${room.numBeds}</span>
-        <span>Bed Size: ${room.bedSize}</span>
-        <span>Cost per Night: ${room.costPerNight}</span>
+        <div class='card-half'>
+          <span>Room: ${room.number}</span>
+          <span>Type: ${room.roomType}</span>
+          <span>Bidet: ${room.bidet}</span>
+        </div>
+        <div class='card-half'>
+          <span>Bed Count: ${room.numBeds}</span>
+          <span>Bed Size: ${room.bedSize}</span>
+          <span>Cost per Night: ${room.costPerNight}</span>
+        </div>
       </div>`)
         .appendTo('#manager-main-title')
     })
-  }
+  },
+
+  // searchUsersByName(hotel) {
+  //   let foundUser = hotel.allUsers.filter(user => user.name === $('#search-user-input').val());
+  //   $('.found-user').html(`
+  //     <h3>${foundUser.name}</h3>
+  //     <div class='curr-booking-card'>
+
+  //     </div>
+  //   `)
+    
+  //   $('#manager-main-title').addClass('hide')
+  //   $('.found-user').removeClass('hide')
+  // }
 }
 
 export default domUpdates
