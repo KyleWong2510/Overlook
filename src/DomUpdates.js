@@ -4,7 +4,7 @@ let domUpdates = {
   
   showPage() {
     for (let i = 0; i < 51; i++) {
-      if($('#username-input').val() === 'customer1' && $('#password-input').val() === 'overlook2020') {
+      if($('#username-input').val() === `customer${i}` && $('#password-input').val() === 'overlook2020') {
         $('.login').addClass('hide');
         $('.guest-page').removeClass('hide');
       }
@@ -32,7 +32,7 @@ let domUpdates = {
     })
   },
 
-  displayAvailableRooms(hotel) {
+  displayAvailableRooms(hotel, element) {
     hotel.roomsAvailable.forEach(room => {
       $(`<div class='curr-booking-card'>
         <div class='card-half'>
@@ -46,7 +46,7 @@ let domUpdates = {
           <span>Cost per Night: ${room.costPerNight}</span>
         </div>
       </div>`)
-        .appendTo('#manager-main-title')
+        .appendTo(element)
     })
   },
 
@@ -62,6 +62,24 @@ let domUpdates = {
   //   $('#manager-main-title').addClass('hide')
   //   $('.found-user').removeClass('hide')
   // }
+
+  displayAmountSpent(user, hotel) {
+    let amount = user.calculateAmountSpent(hotel.allRooms)
+    $('#amount').text(`$${amount}`)
+  },
+
+  displayMyBookings(user) {
+    user.myBookings
+      .forEach(booking => {
+        $(`<div class='curr-booking-card'>
+          <p>${booking.id}<p> 
+          <p>Room: ${booking.roomNumber}</p>
+          <p>Date: ${booking.date}</p>
+        <div>`)
+        .appendTo('#my-bookings-title')
+      })
+  }
+
 }
 
 export default domUpdates

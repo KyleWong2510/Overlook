@@ -9,14 +9,14 @@ class User {
     this.password = 'overlook2020'
   }
 
-  addToMyBookings(booking) {
-    this.myBookings.push(booking)
+  addToMyBookings(bookingsData) {
+    this.myBookings = bookingsData.filter(booking => booking.userID === this.id)
   }
 
 //WHAT TO DO HERE? POST NEEDED
   createBooking(booking) {
     let newBooking = new Booking(booking)
-    this.addToMyBookings(newBooking)
+    this.myBookings.push(booking)
     return newBooking
   }
 

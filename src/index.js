@@ -2,11 +2,12 @@ import $ from 'jquery';
 import './css/base.scss';
 import domUpdates from './DomUpdates';
 import Hotel from './Hotel';
+import User from './User';
 
 let usersData;
 let roomsData;
 let bookingsData;
-
+let currentUser;
 let hotel;
 
 let today = '2020/04/19'
@@ -21,15 +22,26 @@ const hotelHandler = (date) => {
   hotel.calculatePercentOccupied()
 }
 
+const createUser = () => {
+  currentUser = new User({"id":2,"name":"Rocio Schuster"})
+}
+
 const createHotel = (usersData, roomsData, bookingsData) => {
   hotel = new Hotel(usersData, roomsData, bookingsData);
-  console.log(hotel)
 }
 
 const managerHandler = (hotel) => {
   domUpdates.displayManagerInfo(hotel)
   domUpdates.displayCurrentBookings(hotel)
-  domUpdates.displayAvailableRooms(hotel)
+  domUpdates.displayAvailableRooms(hotel, '#manager-main-title')
+}
+
+const userHandler = (user, hotel) => {
+  user.addToMyBookings(hotel.allBookings)
+  user.calculateAmountSpent(hotel.allRooms)
+  domUpdates.displayAmountSpent(user, hotel)
+  domUpdates.displayMyBookings(user)
+  console.log(currentUser)
 }
 
 const fetchData = () => {
@@ -51,18 +63,34 @@ const fetchData = () => {
       roomsData = response[1].rooms;
       bookingsData = response[2].bookings;
       createHotel(usersData, roomsData, bookingsData)
+      createUser()
     })
     .then(() => {
       hotelHandler(today)
-      managerHandler(hotel)
+      managerHandler(hotel)  
+      userHandler(currentUser, hotel)
     })
     .catch(error => console.error(error));
 }
 
+const loadUser = () => {
+  // currentUser = hotel.allUsers.find(user => user.login === $('#username-input'))
+  // createUser(currentUser)
+  domUpdates.showPage()
+}
+const guestAvailableRooms = () => {
+  domUpdates.displayAvailableRooms(hotel, '#guest-main-display')
+}
 
-$('#login-btn').click(domUpdates.showPage);
+const displayBookingForm = () => {
+  $('#guest-main-display').addClass('hide')
+  $('.booking-form').removeClass('hide')
+}
 
+$('#login-btn').click(loadUser);
 
+$('#browse-rooms-btn').click(guestAvailableRooms)
 
+$('#book-room-btn').click(displayBookingForm)
 
 fetchData()

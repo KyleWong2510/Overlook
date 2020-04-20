@@ -32,7 +32,7 @@
         Login
       </button>
     </div>
-    <div class='manager-page'>
+    <div class='manager-page hide'>
       <section id='manager-main'>
         <div id='search-user-section'>
           <div id='search-bar'>
@@ -88,13 +88,13 @@
         </div>
       </section>
     </div>
-    <div class='guest-page hide'>
+    <div class='guest-page'>
       <nav id='guest-nav'>
         <div id='guest-nav-top'>
-          <button>
+          <button id='book-room-btn'>
             Book A Room
           </button>
-          <button>
+          <button id='browse-rooms-btn'>
             Browse Rooms
           </button>
         </div>
@@ -106,24 +106,28 @@
        <div id='guest-main-display'>
          
        </div>
+       <div class='booking-form hide'>
+        <label for='select-date'>Enter a date:</label>
+        <input type='date' name='select' placeholder='YYYY/MM/DD'>
+        <button id='select-date-btn'>Select</button>
+       </div>
       </div>
       <div id='guest-info'>
         <div id='guest-info-top'>
           <p class='welcome'>Welcome, Customer</p>
           <div id='amount-spent'>
             <p>Total Amount Spent:</p>
-            <p>$539048.34</p>
+            <p id='amount'>
+              
+            </p>
           </div>
         </div>
         <div id='guest-info-bottom'>
-          <p>My Bookings</p>
+          <p id='my-bookings-title'>My Bookings</p>
         </div>
       </div>
     </div>
   </main>
-
-
-  <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
 </body>
 
 </html>

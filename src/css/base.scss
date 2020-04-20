@@ -253,9 +253,11 @@ main {
   width: 50%
 }
 
-#guest-main-display {
+#guest-main-display,
+.booking-form {
   background-color: $dark-green;
   height: 100%;
+  overflow: scroll;
   width: 100%
 }
 
@@ -295,6 +297,10 @@ main {
   padding-top: 3%;
   text-align: center;
   width: 100%;
+}
+
+#my-bookings-title {
+  overflow: scroll;
 }
 
 .hide {
