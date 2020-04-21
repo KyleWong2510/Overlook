@@ -82,7 +82,9 @@ const guestAvailableRooms = () => {
   $('.booking-form-section').addClass('hide')
   $('.guest-main-display').removeClass('hide')
   domUpdates.displayAvailableRooms(hotel.roomsAvailable, '.guest-main-display')
-
+  $('#select-date-input').val('')
+  $('#card-holder').html('')
+  $('.book-this-room').addClass('hide')
 }
 
 const displayBookingForm = () => {
@@ -105,44 +107,52 @@ const displayRoomsOnDate = () => {
   domUpdates.displayAvailableRooms(available, '#card-holder')
 }
 
-const filterByRoomType = (arr, type) => {
-  return arr.filter(room => room.roomType === type)
-}
+// const filterByRoomType = (arr, type) => {
+//   return arr.filter(room => room.roomType === type)
+// }
 
-const getFilteredRooms = (hotel) => {
-  let rooms = filterRoomsOnDate(hotel)
-  console.log(rooms)
-  if($('option:selected').val() === 'residential suite') {
-    return filterByRoomType(rooms, 'residential suite')
-  }
-  if($('option:selected').val() === 'suite') {
-    return filterByRoomType(rooms, 'suite')
-  }
-  if($('option:selected').val() === 'junior suite') {
-    return filterByRoomType(rooms, 'junior suite')
-  }
-  if($('option:selected').val() === 'single') {
-    return filterByRoomType(rooms, 'single')
-  }
-}
+// const getFilteredRooms = (hotel) => {
+//   let rooms = filterRoomsOnDate(hotel)
+//   console.log(rooms)
+//   if($('option:selected').val() === 'residential suite') {
+//     return filterByRoomType(rooms, 'residential suite')
+//   }
+//   if($('option:selected').val() === 'suite') {
+//     return filterByRoomType(rooms, 'suite')
+//   }
+//   if($('option:selected').val() === 'junior suite') {
+//     return filterByRoomType(rooms, 'junior suite')
+//   }
+//   if($('option:selected').val() === 'single') {
+//     return filterByRoomType(rooms, 'single')
+//   }
+// }
 
-const displayFilteredRooms = () => {
-  debugger
-  $('#card-holder').html('')
-  let rooms = getFilteredRooms(hotel)  
-  domUpdates.displayAvailableRooms(rooms, '#card-holder')
+// const displayFilteredRooms = () => {
+//   debugger
+//   $('#card-holder').html('')
+//   let rooms = getFilteredRooms(hotel)  
+//   domUpdates.displayAvailableRooms(rooms, '#card-holder')
+// }
+
+const userCreateBooking = () => {
+  let date = $('#select-date-input').val().split('-').join('/');
+  let roomNum = event.target.parentNode.id
+  currentUser.createBooking(date, roomNum)
+  $('#select-date-input').val('')
+  domUpdates.displayConfirmation()
 }
 
 $('#login-btn').click(loadUser);
 $('#browse-rooms-btn').click(guestAvailableRooms)
 $('#book-room-btn').click(displayBookingForm)
 $('#select-date-btn').click(displayRoomsOnDate)
+$(document).on('click', '.book-this-room', userCreateBooking)
 
 //WORK ON THIS FILTER BY ROOM TYPE!!!
 
-$('#room-option').click(displayFilteredRooms)
+// $('#room-option').click(displayFilteredRooms)
 
 fetchData()
-
 
 

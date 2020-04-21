@@ -45,7 +45,7 @@ let domUpdates = {
     </select>
     </div>`).appendTo(element)
     arr.forEach(room => {
-      $(`<div class='curr-booking-card'>
+      $(`<div class='curr-booking-card' id='${room.number}'>
         <div class='card-half'>
           <span>Room: ${room.number}</span>
           <span>Type: ${room.roomType}</span>
@@ -56,7 +56,7 @@ let domUpdates = {
           <span>Bed Size: ${room.bedSize}</span>
           <span>Cost per Night: $${room.costPerNight}</span>
         </div>
-        <button id='book-this-room'>Book Now</button>
+        <button class='book-this-room'>Book Now</button>
       </div>`)
         .appendTo(element)
     })
@@ -77,7 +77,8 @@ let domUpdates = {
 
   displayAmountSpent(user, hotel) {
     let amount = user.calculateAmountSpent(hotel.allRooms)
-    $('#amount').text(`$${amount}`)
+    let formatted = Number(amount.toFixed(2))
+    $('#amount').text(`$${formatted}`)
   },
 
   displayMyBookings(user) {
@@ -91,7 +92,10 @@ let domUpdates = {
     })
   },
 
-
+  displayConfirmation() {
+    $('.booking-form-section').html('');
+    $('.booking-form-section').text('You have successfully booked your room!')
+  }
 
 }
 
