@@ -43,6 +43,7 @@ let domUpdates = {
       <option id='room-option' value='junior-suite'>Junior Suite</option>
       <option id='room-option' value='single'>Single</option>
     </select>
+    <button id='filter-btn'>Filter</button>
     </div>`).appendTo(element)
     arr.forEach(room => {
       $(`<div class='curr-booking-card' id='${room.number}'>
@@ -82,7 +83,7 @@ let domUpdates = {
   },
 
   displayMyBookings(user) {
-    user.myBookings.forEach(booking => {
+    user.myBookings.reverse().forEach(booking => {
       $(`<div class='curr-booking-card'>
         <p>${booking.id}<p> 
         <p>Room: ${booking.roomNumber}</p>

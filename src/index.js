@@ -93,10 +93,12 @@ const displayBookingForm = () => {
 }
 
 const filterRoomsOnDate = (hotel) => {
+  console.log('filterroomsondate')
   let formattedDate = $('#select-date-input').val().split('-').join('/')
   let roomsBookedOnDate = hotel.allBookings
     .filter(booking => booking.date === formattedDate)
     .map(booking => booking.roomNumber)
+  console.log('rooms on date', roomsBookedOnDate)
   return hotel.allRooms.filter(room => !roomsBookedOnDate.includes(room.number))
 }
 
@@ -116,33 +118,41 @@ const displayRoomsOnDate = () => {
   }
 }
 
-// const filterByRoomType = (arr, type) => {
-//   return arr.filter(room => room.roomType === type)
-// }
+const filterByRoomType = (arr, type) => {
+  console.log('120', arr)
+  return arr.filter(room => room.roomType === type)
+}
 
-// const getFilteredRooms = (hotel) => {
-//   let rooms = filterRoomsOnDate(hotel)
-//   console.log(rooms)
-//   if($('option:selected').val() === 'residential suite') {
-//     return filterByRoomType(rooms, 'residential suite')
-//   }
-//   if($('option:selected').val() === 'suite') {
-//     return filterByRoomType(rooms, 'suite')
-//   }
-//   if($('option:selected').val() === 'junior suite') {
-//     return filterByRoomType(rooms, 'junior suite')
-//   }
-//   if($('option:selected').val() === 'single') {
-//     return filterByRoomType(rooms, 'single')
-//   }
-// }
+const getFilteredRooms = (hotel) => {
+  let rooms = filterRoomsOnDate(hotel)
+  console.log("125", rooms)
+  console.log('value', $('#room-option').val())
+  console.log('e.t.', event.target)
+  //need to access the selected el and put where room-option is...
+  if($('#room-option').val() === 'residential-suite') {
+    console.log('hi')
+    let h = filterByRoomType(rooms, 'residential suite')
+    console.log('h', h)
+    return filterByRoomType(rooms, 'residential suite')
+  } 
+  if($('#room-option').val() === 'suite') {
+    return filterByRoomType(rooms, 'suite')
+  }
+  if($('#room-option').val() === 'junior-suite') {
+    return filterByRoomType(rooms, 'junior suite')
+  }
+  if($('#room-option').val() === 'single') {
+    return filterByRoomType(rooms, 'single')
+  }
+}
 
-// const displayFilteredRooms = () => {
-//   debugger
-//   $('#card-holder').html('')
-//   let rooms = getFilteredRooms(hotel)  
-//   domUpdates.displayAvailableRooms(rooms, '#card-holder')
-// }
+const displayFilteredRooms = () => {
+  $('#card-holder').html('')
+  console.log('event', event)
+  let rooms = getFilteredRooms(hotel)  
+  console.log('rooms', rooms)
+  domUpdates.displayAvailableRooms(rooms, '#card-holder')
+}
 
 const userCreateBooking = () => {
   let date = $('#select-date-input').val().split('-').join('/');
@@ -152,6 +162,8 @@ const userCreateBooking = () => {
   domUpdates.displayConfirmation()
 }
 
+$(document).on('click', '#filter-btn', displayFilteredRooms)
+// ('#filter-btn').click(displayFilteredRooms)
 $('#login-btn').click(loadUser);
 $('#browse-rooms-btn').click(guestAvailableRooms)
 $('#book-room-btn').click(displayBookingForm)
