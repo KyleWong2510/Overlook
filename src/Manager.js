@@ -42,7 +42,9 @@ class Manager {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({id: Number(bookingID)})
     })
+      .then(console.log('deleted'))
       .catch(error => console.error(error));
+
   }
 }
 

@@ -167,7 +167,7 @@ const userCreateBooking = () => {
   let roomNum = event.target.parentNode.id
   currentUser.createBooking(date, roomNum)
   $('#select-date-input').val('')
-  domUpdates.displayConfirmation()
+  domUpdates.displayConfirmation('.booking-form-section')
 }
 
 //search bar for user returns user object
@@ -183,7 +183,8 @@ const displaySearchedUserInfo = () => {
   getSearchedUser()
   $('#manager-main-title').addClass('hide') 
   $('.found-user').removeClass('hide')
-userHandler(searchedUser, hotel)
+  userHandler(searchedUser, hotel)
+  domUpdates.displayDeleteButton()
   console.log(searchedUser)
 }
 
@@ -203,7 +204,13 @@ const managerCreateBooking = () => {
   let roomNum = event.target.parentNode.id
   manager.createBookingForGuest(searchedUser.id, date, roomNum)
   $('#select-date-input').val('')
-  domUpdates.displayConfirmation()
+  domUpdates.displayConfirmation('#mgr-card-holder')
+}
+
+const deleteBooking = () => {
+  let id = event.target.parentNode.id
+  console.log(id)
+  manager.cancelBooking(id)
 }
 
 $('#mgr-select-date-btn').click(mgrDisplayRoomsOnDate)
@@ -216,10 +223,11 @@ $('#book-room-btn').click(displayBookingForm)
 $('#select-date-btn').click(displayRoomsOnDate)
 $(document).on('click', '.book-this-room', userCreateBooking)
 $(document).on('click', '.mgr-book-this-room', managerCreateBooking)
+$(document).on('click', '#delete', deleteBooking)
 
 //WORK ON THIS FILTER BY ROOM TYPE!!!
 
-// $('#room-option').click(displayFilteredRooms)
+$('#room-option').click(displayFilteredRooms)
 
 fetchData()
 

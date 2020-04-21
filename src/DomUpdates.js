@@ -88,23 +88,12 @@ let domUpdates = {
           <span>Bed Size: ${room.bedSize}</span>
           <span>Cost per Night: $${room.costPerNight}</span>
         </div>
+
         <button class='mgr-book-this-room'>Book Now</button>
       </div>`)
         .appendTo(element)
     })
   },
-  // searchUsersByName(hotel) {
-  //   let foundUser = hotel.allUsers.filter(user => user.name === $('#search-user-input').val());
-  //   $('.found-user').html(`
-  //     <h3>${foundUser.name}</h3>
-  //     <div class='curr-booking-card'>
-
-  //     </div>
-  //   `)
-
-  //   $('#manager-main-title').addClass('hide')
-  //   $('.found-user').removeClass('hide')
-  // }
 
   displayAmountSpent(user, hotel) {
     let amount = user.calculateAmountSpent(hotel.allRooms)
@@ -114,7 +103,7 @@ let domUpdates = {
 
   displayMyBookings(user) {
     user.myBookings.reverse().forEach(booking => {
-      $(`<div class='curr-booking-card'>
+      $(`<div class='curr-booking-card' id=${booking.id}>
         <p>${booking.id}<p> 
         <p>Room: ${booking.roomNumber}</p>
         <p>Date: ${booking.date}</p>
@@ -123,9 +112,14 @@ let domUpdates = {
     })
   },
 
-  displayConfirmation() {
-    $('.booking-form-section').html('');
-    $('.booking-form-section').text('You have successfully booked your room!')
+  displayDeleteButton() {
+    $('<button id="delete">Delete This Booking</button>')
+      .appendTo('.curr-booking-card')
+  },
+
+  displayConfirmation(element) {
+    $(element).html('');
+    $(element).text('You have successfully booked your room!')
   }
 
   
