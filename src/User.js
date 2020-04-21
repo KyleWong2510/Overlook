@@ -14,10 +14,25 @@ class User {
   }
 
 //WHAT TO DO HERE? POST NEEDED
-  createBooking(booking) {
-    let newBooking = new Booking(booking)
-    this.myBookings.push(booking)
-    return newBooking
+  createBooking(todayDate, roomNum) {
+    let newBooking = {
+      'userID': Number(this.id),
+      'date': todayDate,
+      'roomNumber': Number(roomNum),
+    }
+    console.log(newBooking)
+    // this.myBookings.push(newBooking)
+    
+    let url = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings';
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newBooking),
+    })
+    .then(response => console.log(response.json()))
+      .catch(error => console.error(error));
   }
 
   calculateAmountSpent(roomsData) {

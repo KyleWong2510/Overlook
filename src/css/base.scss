@@ -206,7 +206,7 @@ main {
 .curr-booking-card {
   background-color: $light-green;
   font-size: 1em;
-  margin: 1em 0;
+  margin: 1em 0 0;
 }
 
 .card-half {
@@ -253,12 +253,23 @@ main {
   width: 50%
 }
 
-#guest-main-display,
-.booking-form {
+.guest-main-display,
+.booking-form-section {
   background-color: $dark-green;
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  text-align: center;
   overflow: scroll;
   width: 100%
+}
+
+// #booking-form {
+
+// }
+
+#booking-form input, button{
+  color: #0A0A13
 }
 
 #guest-info {

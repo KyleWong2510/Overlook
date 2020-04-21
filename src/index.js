@@ -33,7 +33,7 @@ const createHotel = (usersData, roomsData, bookingsData) => {
 const managerHandler = (hotel) => {
   domUpdates.displayManagerInfo(hotel)
   domUpdates.displayCurrentBookings(hotel)
-  domUpdates.displayAvailableRooms(hotel, '#manager-main-title')
+  domUpdates.displayAvailableRooms(hotel.roomsAvailable, '#manager-main-title')
 }
 
 const userHandler = (user, hotel) => {
@@ -79,18 +79,101 @@ const loadUser = () => {
   domUpdates.showPage()
 }
 const guestAvailableRooms = () => {
-  domUpdates.displayAvailableRooms(hotel, '#guest-main-display')
+  $('.booking-form-section').addClass('hide')
+  $('.guest-main-display').removeClass('hide')
+  domUpdates.displayAvailableRooms(hotel.roomsAvailable, '.guest-main-display')
+  $('#select-date-input').val('')
+  $('#card-holder').html('')
+  $('.book-this-room').addClass('hide')
 }
 
 const displayBookingForm = () => {
-  $('#guest-main-display').addClass('hide')
-  $('.booking-form').removeClass('hide')
+    $('.guest-main-display').addClass('hide')
+    $('.booking-form-section').removeClass('hide')
 }
 
+const filterRoomsOnDate = (hotel) => {
+  console.log('filterroomsondate')
+  let formattedDate = $('#select-date-input').val().split('-').join('/')
+  let roomsBookedOnDate = hotel.allBookings
+    .filter(booking => booking.date === formattedDate)
+    .map(booking => booking.roomNumber)
+  console.log('rooms on date', roomsBookedOnDate)
+  return hotel.allRooms.filter(room => !roomsBookedOnDate.includes(room.number))
+}
+
+// ADD MORE
+const displayDateError = () => {
+  alert('You must select a valid date')
+}
+
+const displayRoomsOnDate = () => {
+  if($('#select-date-input').val()) {
+    $('#card-holder').html('');
+    let available = filterRoomsOnDate(hotel)
+    console.log(available)
+    domUpdates.displayAvailableRooms(available, '#card-holder')
+  } else {
+    displayDateError()
+  }
+}
+
+const filterByRoomType = (arr, type) => {
+  console.log('120', arr)
+  return arr.filter(room => room.roomType === type)
+}
+
+const getFilteredRooms = (hotel) => {
+  let rooms = filterRoomsOnDate(hotel)
+  console.log("125", rooms)
+  console.log('value', $('#room-option').val())
+  console.log('e.t.', event.target)
+  //need to access the selected el and put where room-option is...
+  if($('#room-option').val() === 'residential-suite') {
+    console.log('hi')
+    let h = filterByRoomType(rooms, 'residential suite')
+    console.log('h', h)
+    return filterByRoomType(rooms, 'residential suite')
+  } 
+  if($('#room-option').val() === 'suite') {
+    return filterByRoomType(rooms, 'suite')
+  }
+  if($('#room-option').val() === 'junior-suite') {
+    return filterByRoomType(rooms, 'junior suite')
+  }
+  if($('#room-option').val() === 'single') {
+    return filterByRoomType(rooms, 'single')
+  }
+}
+
+const displayFilteredRooms = () => {
+  $('#card-holder').html('')
+  console.log('event', event)
+  let rooms = getFilteredRooms(hotel)  
+  console.log('rooms', rooms)
+  domUpdates.displayAvailableRooms(rooms, '#card-holder')
+}
+
+const userCreateBooking = () => {
+  let date = $('#select-date-input').val().split('-').join('/');
+  let roomNum = event.target.parentNode.id
+  currentUser.createBooking(date, roomNum)
+  $('#select-date-input').val('')
+  domUpdates.displayConfirmation()
+}
+
+$(document).on('click', '#filter-btn', displayFilteredRooms)
+// ('#filter-btn').click(displayFilteredRooms)
 $('#login-btn').click(loadUser);
-
 $('#browse-rooms-btn').click(guestAvailableRooms)
-
 $('#book-room-btn').click(displayBookingForm)
+$('#select-date-btn').click(displayRoomsOnDate)
+$(document).on('click', '.book-this-room', userCreateBooking)
+
+//WORK ON THIS FILTER BY ROOM TYPE!!!
+
+// $('#room-option').click(displayFilteredRooms)
 
 fetchData()
+
+
