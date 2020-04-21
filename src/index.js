@@ -3,12 +3,14 @@ import './css/base.scss';
 import domUpdates from './DomUpdates';
 import Hotel from './Hotel';
 import User from './User';
+import Manager from './Manager';
 
 let usersData;
 let roomsData;
 let bookingsData;
 let currentUser;
 let searchedUser;
+let manager;
 let hotel;
 
 let today = '2020/04/19'
@@ -21,6 +23,10 @@ const hotelHandler = (date) => {
   hotel.filterPastBookings(date)
   hotel.calculateTotalRevenue()
   hotel.calculatePercentOccupied()
+}
+
+const createManager = () => {
+  manager = new Manager()
 }
 
 const createUser = () => {
@@ -65,6 +71,7 @@ const fetchData = () => {
       bookingsData = response[2].bookings;
       createHotel(usersData, roomsData, bookingsData)
       createUser()
+      createManager()
     })
     .then(() => {
       hotelHandler(today)
@@ -172,15 +179,34 @@ const getSearchedUser = () => {
 //hide #manager-main-title
 //show .found-user 
 //fill .found-user with searched user info
-//display book now button
 const displaySearchedUserInfo = () => {
   getSearchedUser()
   $('#manager-main-title').addClass('hide') 
   $('.found-user').removeClass('hide')
-  userHandler(searchedUser, hotel)
+userHandler(searchedUser, hotel)
   console.log(searchedUser)
 }
 
+const mgrDisplayRoomsOnDate = () => {
+  if($('#select-date-input').val()) {
+    $('#mgr-card-holder').html('');
+    let available = filterRoomsOnDate(hotel)
+    console.log(available)
+    domUpdates.mgrDisplayAvailableRooms(available, '#mgr-card-holder')
+  } else {
+    displayDateError()
+  }
+}
+
+const managerCreateBooking = () => {
+  let date = $('#select-date-input').val().split('-').join('/');
+  let roomNum = event.target.parentNode.id
+  manager.createBookingForGuest(searchedUser.id, date, roomNum)
+  $('#select-date-input').val('')
+  domUpdates.displayConfirmation()
+}
+
+$('#mgr-select-date-btn').click(mgrDisplayRoomsOnDate)
 $('#search-user-btn').click(displaySearchedUserInfo)
 $(document).on('click', '#filter-btn', displayFilteredRooms)
 // ('#filter-btn').click(displayFilteredRooms)
@@ -189,6 +215,7 @@ $('#browse-rooms-btn').click(guestAvailableRooms)
 $('#book-room-btn').click(displayBookingForm)
 $('#select-date-btn').click(displayRoomsOnDate)
 $(document).on('click', '.book-this-room', userCreateBooking)
+$(document).on('click', '.mgr-book-this-room', managerCreateBooking)
 
 //WORK ON THIS FILTER BY ROOM TYPE!!!
 
