@@ -97,6 +97,7 @@ let domUpdates = {
     $('.booking-form-section').text('You have successfully booked your room!')
   }
 
+
 }
 
 export default domUpdates

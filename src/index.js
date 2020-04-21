@@ -88,8 +88,8 @@ const guestAvailableRooms = () => {
 }
 
 const displayBookingForm = () => {
-  $('.guest-main-display').addClass('hide')
-  $('.booking-form-section').removeClass('hide')
+    $('.guest-main-display').addClass('hide')
+    $('.booking-form-section').removeClass('hide')
 }
 
 const filterRoomsOnDate = (hotel) => {
@@ -100,11 +100,20 @@ const filterRoomsOnDate = (hotel) => {
   return hotel.allRooms.filter(room => !roomsBookedOnDate.includes(room.number))
 }
 
+// ADD MORE
+const displayDateError = () => {
+  alert('You must select a valid date')
+}
+
 const displayRoomsOnDate = () => {
-  $('#card-holder').html('');
-  let available = filterRoomsOnDate(hotel)
-  console.log(available)
-  domUpdates.displayAvailableRooms(available, '#card-holder')
+  if($('#select-date-input').val()) {
+    $('#card-holder').html('');
+    let available = filterRoomsOnDate(hotel)
+    console.log(available)
+    domUpdates.displayAvailableRooms(available, '#card-holder')
+  } else {
+    displayDateError()
+  }
 }
 
 // const filterByRoomType = (arr, type) => {
