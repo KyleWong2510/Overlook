@@ -8,6 +8,7 @@ let usersData;
 let roomsData;
 let bookingsData;
 let currentUser;
+let searchedUser;
 let hotel;
 
 let today = '2020/04/19'
@@ -162,6 +163,25 @@ const userCreateBooking = () => {
   domUpdates.displayConfirmation()
 }
 
+//search bar for user returns user object
+const getSearchedUser = () => {
+  let found = hotel.allUsers.find(user => user.name === $('#search-user-input').val())
+  searchedUser = new User(found)
+}
+
+//hide #manager-main-title
+//show .found-user 
+//fill .found-user with searched user info
+//display book now button
+const displaySearchedUserInfo = () => {
+  getSearchedUser()
+  $('#manager-main-title').addClass('hide') 
+  $('.found-user').removeClass('hide')
+  userHandler(searchedUser, hotel)
+  console.log(searchedUser)
+}
+
+$('#search-user-btn').click(displaySearchedUserInfo)
 $(document).on('click', '#filter-btn', displayFilteredRooms)
 // ('#filter-btn').click(displayFilteredRooms)
 $('#login-btn').click(loadUser);
