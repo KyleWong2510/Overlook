@@ -203,6 +203,15 @@ main {
   width: 100%
 }
 
+#mgr-guest-info {
+  align-items: center;
+  background-color: $dark-green;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  width: 100%
+}
+
 .curr-booking-card {
   background-color: $light-green;
   font-size: 1em;
@@ -212,6 +221,13 @@ main {
 .card-half {
   display: flex;
   justify-content: space-evenly;
+}
+
+#searched-user-info {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
 }
 
 //GUEST PAGE

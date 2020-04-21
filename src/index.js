@@ -3,11 +3,14 @@ import './css/base.scss';
 import domUpdates from './DomUpdates';
 import Hotel from './Hotel';
 import User from './User';
+import Manager from './Manager';
 
 let usersData;
 let roomsData;
 let bookingsData;
 let currentUser;
+let searchedUser;
+let manager;
 let hotel;
 
 let today = '2020/04/19'
@@ -20,6 +23,10 @@ const hotelHandler = (date) => {
   hotel.filterPastBookings(date)
   hotel.calculateTotalRevenue()
   hotel.calculatePercentOccupied()
+}
+
+const createManager = () => {
+  manager = new Manager()
 }
 
 const createUser = () => {
@@ -64,6 +71,7 @@ const fetchData = () => {
       bookingsData = response[2].bookings;
       createHotel(usersData, roomsData, bookingsData)
       createUser()
+      createManager()
     })
     .then(() => {
       hotelHandler(today)
@@ -159,9 +167,54 @@ const userCreateBooking = () => {
   let roomNum = event.target.parentNode.id
   currentUser.createBooking(date, roomNum)
   $('#select-date-input').val('')
-  domUpdates.displayConfirmation()
+  domUpdates.displayConfirmation('.booking-form-section')
 }
 
+//search bar for user returns user object
+const getSearchedUser = () => {
+  let found = hotel.allUsers.find(user => user.name === $('#search-user-input').val())
+  searchedUser = new User(found)
+}
+
+//hide #manager-main-title
+//show .found-user 
+//fill .found-user with searched user info
+const displaySearchedUserInfo = () => {
+  getSearchedUser()
+  $('#manager-main-title').addClass('hide') 
+  $('.found-user').removeClass('hide')
+  userHandler(searchedUser, hotel)
+  domUpdates.displayDeleteButton()
+  console.log(searchedUser)
+}
+
+const mgrDisplayRoomsOnDate = () => {
+  if($('#select-date-input').val()) {
+    $('#mgr-card-holder').html('');
+    let available = filterRoomsOnDate(hotel)
+    console.log(available)
+    domUpdates.mgrDisplayAvailableRooms(available, '#mgr-card-holder')
+  } else {
+    displayDateError()
+  }
+}
+
+const managerCreateBooking = () => {
+  let date = $('#select-date-input').val().split('-').join('/');
+  let roomNum = event.target.parentNode.id
+  manager.createBookingForGuest(searchedUser.id, date, roomNum)
+  $('#select-date-input').val('')
+  domUpdates.displayConfirmation('#mgr-card-holder')
+}
+
+const deleteBooking = () => {
+  let id = event.target.parentNode.id
+  console.log(id)
+  manager.cancelBooking(id)
+}
+
+$('#mgr-select-date-btn').click(mgrDisplayRoomsOnDate)
+$('#search-user-btn').click(displaySearchedUserInfo)
 $(document).on('click', '#filter-btn', displayFilteredRooms)
 // ('#filter-btn').click(displayFilteredRooms)
 $('#login-btn').click(loadUser);
@@ -169,10 +222,12 @@ $('#browse-rooms-btn').click(guestAvailableRooms)
 $('#book-room-btn').click(displayBookingForm)
 $('#select-date-btn').click(displayRoomsOnDate)
 $(document).on('click', '.book-this-room', userCreateBooking)
+$(document).on('click', '.mgr-book-this-room', managerCreateBooking)
+$(document).on('click', '#delete', deleteBooking)
 
 //WORK ON THIS FILTER BY ROOM TYPE!!!
 
-// $('#room-option').click(displayFilteredRooms)
+$('#room-option').click(displayFilteredRooms)
 
 fetchData()
 

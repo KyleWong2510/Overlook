@@ -32,7 +32,7 @@
         Login
       </button>
     </div>
-    <div class='manager-page hide'>
+    <div class='manager-page '>
       <section id='manager-main'>
         <div id='search-user-section'>
           <div id='search-bar'>
@@ -46,11 +46,34 @@
           </button>
         </div>
         <div id='manager-main-bottom'>
-          <p id='manager-main-title'>
-            Available Rooms
-          </p>
+          <div id='manager-main-title'>
+        
+          </div>
           <div class='found-user hide'>
-
+            <div id='booking-form'>
+              <label for='select-date'>Enter a date:</label>
+              <input id='select-date-input' type='date' name='select-date'>
+              <button id='mgr-select-date-btn'>Select</button>
+            </div>
+            <div id='mgr-card-holder'>
+            
+            </div>
+          </div>  
+            <div id='searched-user-info'>
+              <div id='mgr-guest-info'>
+                <div id='guest-info-top'>
+                  <p class='welcome'>Customer Info</p>
+                  <div id='amount-spent'>
+                    <p>Total Amount Spent:</p>
+                    <p id='amount'>
+                    </p>
+                  </div>
+                </div>
+                <div id='guest-info-bottom'>
+                  <p id='my-bookings-title'>User's Bookings</p>
+                </div>
+            </div>
+            <div></div>
           </div>
         </div>
       </section>
@@ -88,7 +111,7 @@
         </div>
       </section>
     </div>
-    <div class='guest-page'>
+    <div class='guest-page hide'>
       <nav id='guest-nav'>
         <div id='guest-nav-top'>
           <button id='book-room-btn'>

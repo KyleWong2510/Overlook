@@ -63,18 +63,37 @@ let domUpdates = {
     })
   },
 
-  // searchUsersByName(hotel) {
-  //   let foundUser = hotel.allUsers.filter(user => user.name === $('#search-user-input').val());
-  //   $('.found-user').html(`
-  //     <h3>${foundUser.name}</h3>
-  //     <div class='curr-booking-card'>
+  mgrDisplayAvailableRooms(arr, element) {
+    $('<p>Available Rooms</p>').appendTo(element)
+    $(`<div class='filter-roomtype'>
+    <span>Filter By Room Type: </span>
+    <select id='roomtype' name='roomtype'>
+      <option selected='selected' value='choose'>Select an Option</option>
+      <option id='room-option' value='residential-suite'>Residential Suite</option>
+      <option id='room-option' value='suite'>Suite</option>
+      <option id='room-option' value='junior-suite'>Junior Suite</option>
+      <option id='room-option' value='single'>Single</option>
+    </select>
+    <button id='filter-btn'>Filter</button>
+    </div>`).appendTo(element)
+    arr.forEach(room => {
+      $(`<div class='curr-booking-card' id='${room.number}'>
+        <div class='card-half'>
+          <span>Room: ${room.number}</span>
+          <span>Type: ${room.roomType}</span>
+          <span>Bidet: ${room.bidet}</span>
+        </div>
+        <div class='card-half'>
+          <span>Bed Count: ${room.numBeds}</span>
+          <span>Bed Size: ${room.bedSize}</span>
+          <span>Cost per Night: $${room.costPerNight}</span>
+        </div>
 
-  //     </div>
-  //   `)
-
-  //   $('#manager-main-title').addClass('hide')
-  //   $('.found-user').removeClass('hide')
-  // }
+        <button class='mgr-book-this-room'>Book Now</button>
+      </div>`)
+        .appendTo(element)
+    })
+  },
 
   displayAmountSpent(user, hotel) {
     let amount = user.calculateAmountSpent(hotel.allRooms)
@@ -84,7 +103,7 @@ let domUpdates = {
 
   displayMyBookings(user) {
     user.myBookings.reverse().forEach(booking => {
-      $(`<div class='curr-booking-card'>
+      $(`<div class='curr-booking-card' id=${booking.id}>
         <p>${booking.id}<p> 
         <p>Room: ${booking.roomNumber}</p>
         <p>Date: ${booking.date}</p>
@@ -93,11 +112,17 @@ let domUpdates = {
     })
   },
 
-  displayConfirmation() {
-    $('.booking-form-section').html('');
-    $('.booking-form-section').text('You have successfully booked your room!')
+  displayDeleteButton() {
+    $('<button id="delete">Delete This Booking</button>')
+      .appendTo('.curr-booking-card')
+  },
+
+  displayConfirmation(element) {
+    $(element).html('');
+    $(element).text('You have successfully booked your room!')
   }
 
+  
 
 }
 
