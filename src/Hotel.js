@@ -21,7 +21,6 @@ class Hotel {
   }
 
   filterRoomsAvailable() {
-    // let inactiveBookings = this.allBookings.filter(booking => booking.date !== date)
     this.roomsAvailable = this.allRooms.filter(room => !this.roomsBooked.includes(room))
   }
 
