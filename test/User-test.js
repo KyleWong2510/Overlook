@@ -9,6 +9,7 @@ describe('User', () => {
   let user;
   let booking1;
   let booking2;
+  let bookings;
   let room12;
   let room20;
   let room34;
@@ -25,11 +26,12 @@ describe('User', () => {
     });
     booking2 = new Booking({
       "id":"5fwrgu4i7k55hl6x8",
-      "userID":1,
+      "userID":2,
       "date":"2020/01/11",
       "roomNumber":20,
       "roomServiceCharges":[]
     });
+    bookings = [booking1, booking2];
     room12 = {
       "number":12,
       "roomType":"single room",
@@ -87,7 +89,7 @@ describe('User', () => {
 
   it('should be able to add to their list of bookings', () => {
     expect(user.myBookings.length).to.equal(0);
-    user.addToMyBookings(booking1);
+    user.addToMyBookings(bookings);
     expect(user.myBookings.length).to.equal(1)
   });
 
@@ -106,9 +108,8 @@ describe('User', () => {
 
   it('should be able to calculate the amount spent on bookings', () => {
     expect(user.myBookings).to.deep.equal([]);
-    user.createBooking(booking1);
-    user.createBooking(booking2)
-    expect(user.myBookings.length).to.equal(2)
-    expect(user.calculateAmountSpent(rooms)).to.equal(516.04)
+    user.addToMyBookings(bookings)
+    expect(user.myBookings.length).to.equal(1)
+    expect(user.calculateAmountSpent(rooms)).to.equal(172.09)
   });
 });

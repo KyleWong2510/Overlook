@@ -7,13 +7,11 @@
   padding: 0;
 }
 
-/* This is an example of using Sass, otherwise plain CSS works too*/
 $primary-background: #231641;
 $dark-green: #0F2826;
 $light-green: #244533;
 
 body {
-  // background-color: $primary-background;
   margin: 0
 }
 
@@ -119,7 +117,6 @@ main {
 
 #search-user-section input {
   align-self: center;
-  ;
   color: #0A0A13;
   width: 30%;
 }
